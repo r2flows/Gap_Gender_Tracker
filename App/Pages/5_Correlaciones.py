@@ -8,7 +8,7 @@ st.header('Correlaciones entre asignaturas')
 df_inicial=pd.read_pickle('df_inicial.pkl')
 #años = df_boxplots['Año'].drop_duplicates()with st.expander("Descripcion herramienta"):
 with st.expander('Descripción'):
-    st.write(""" Esta herramienta muestra las correlacines entre las asignaturas. Valores cercanos a 1 indican mayor correlación
+    st.write(""" Esta herramienta muestra las correlaciones entre las asignaturas. Valores cercanos a 1 indican mayor correlación
     entre las variables, mientras que valores cercanos a cero, menor o nula correlación """)
 with st.expander('Utilidad'):
     st.write('''1) Monitorear la correlación entre materias que desarrollan habilidades similares.
