@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-df_boxplots = pd.read_pickle("df_boxplots.pkl")
+df_boxplots = pd.read_pickle("app/df_boxplots.pkl")
 st.header('Evolución de puntajes 2002 - 2018' )
-df_inicial=pd.read_pickle('df_inicial.pkl')
+df_inicial=pd.read_pickle('app/df_inicial.pkl')
 with st.expander("Descripcion"):
     st.write(""" Monitoramento de la evolución anual de los resultados promedio de cada grupo, 
     pudiendo visualizar los cambios en las pendientes en los rendimientos. 
