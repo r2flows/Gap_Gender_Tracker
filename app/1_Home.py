@@ -9,6 +9,6 @@ el Dashboard permite a los usuarios visualizar de manera clara y detallada los r
  que permiten a los usuarios profundizar en los resultados y contribuir al análisis de posibles causas 
  de la brecha de género.''')
 
-image = Image.open("gender.jpg")
+image = Image.open("app/gender.jpg")
 st.write("")
 st.image(image, caption="")

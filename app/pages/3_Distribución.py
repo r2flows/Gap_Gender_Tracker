@@ -8,7 +8,7 @@ import plotly.figure_factory as ff
 #definimos filtros 
 #selected_columns = ["Lenguaje", "Matemáticas", "Historia", "Ciencias"]
 st.header('Ajuste de la distribución de puntajes')
-df_boxplots = pd.read_pickle("df_boxplots.pkl")
+df_boxplots = pd.read_pickle("app/df_boxplots.pkl")
 
 with st.expander("Descripcion"):
     st.write("""  Representación detallada de la distribución de puntajes en función de su frecuencia para las distintas materias evaluadas. 

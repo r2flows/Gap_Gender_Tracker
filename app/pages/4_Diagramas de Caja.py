@@ -4,7 +4,7 @@ import numpy as np
 import plotly.express as px
 #import statsmodels.api as sm
 
-df_boxplots = pd.read_pickle("df_boxplots.pkl")
+df_boxplots = pd.read_pickle("app/df_boxplots.pkl")
 st.header('Diagramas de caja comparados por género')
 
 with st.expander("Descripcion"):

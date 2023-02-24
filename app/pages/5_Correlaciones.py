@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 
-df_boxplots = pd.read_pickle("df_boxplots.pkl")
+df_boxplots = pd.read_pickle("app/df_boxplots.pkl")
 st.header('Correlaciones entre asignaturas')
-df_inicial=pd.read_pickle('df_inicial.pkl')
+df_inicial=pd.read_pickle('app/df_inicial.pkl')
 #años = df_boxplots['Año'].drop_duplicates()with st.expander("Descripcion herramienta"):
 with st.expander('Descripción'):
     st.write(""" Esta herramienta muestra las correlacines entre las asignaturas. Valores cercanos a 1 indican mayor correlación
