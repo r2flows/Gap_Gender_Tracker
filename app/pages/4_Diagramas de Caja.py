@@ -1,30 +1,54 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
-#import statsmodels.api as sm
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
-df_boxplots = pd.read_pickle("app/df_boxplots.pkl")
-st.header('Diagramas de caja comparados por género')
+dataframe = st.session_state.get("data")
 
-with st.expander("Descripcion"):
-    st.write(""" Representación proyectada de la Campana de Gauss estratificada en cuartiles de rendimiento. 
-En el eje vertical encontramos la escala de puntajes y en el eje horizontal las distintas materias evaluadas.
-La mayor cantidad de puntajes se encuentra justamente en las cajas que representan el centro de la campana de Gauss.
-""")
-with st.expander('Utilidad'):
-    st.write('''1) Dar una visualización de la distribución detallada en cuartiles de rendimiento.
-2) Reconocer variaciones importantes en los resultados de aprendizaje entre dos grupos diferentes separados por género
-''')
+if dataframe is not None:
+    st.title("Diagramas de caja comparados por género")
 
-años = df_boxplots['Año'].drop_duplicates()
+    with st.expander("Descripción"):
+        st.write(
+            """
+            Representación proyectada de la Campana de Gauss estratificada en cuartiles de rendimiento. 
+            En el eje vertical encontramos la escala de puntajes y en el eje horizontal las distintas materias evaluadas.
+            La mayor cantidad de puntajes se encuentra justamente en las cajas que representan el centro de la campana de Gauss.
+            """
+        )
+    with st.expander("Utilidad"):
+        st.write(
+            """
+            1) Dar una visualización de la distribución detallada en cuartiles de rendimiento.
+            2) Reconocer variaciones importantes en los resultados de aprendizaje entre dos grupos diferentes separados por género
+            """
+        )
 
-año = st.sidebar.selectbox('Seleccione año', options = años)
-filtro = df_boxplots['Año'] == año
+    años = dataframe["Año"].unique()
+    año = st.sidebar.selectbox("Seleccione año", options=años)
+    asignaturas = dataframe.drop(columns=["Sexo", "Etiqueta", "Año"]).columns
+    data_long = pd.melt(
+        dataframe,
+        id_vars=["Sexo", "Año"],
+        value_vars=asignaturas,
+        var_name="Asignatura",
+        value_name="Nota",
+    )
+    filtro = data_long["Año"] == año
 
-fig = px.box(df_boxplots[filtro], x ="Asignatura", y ="Puntaje", color ="Genero", color_discrete_sequence=['red','blue'])
+    fig = px.box(
+        data_long[filtro],
+        x="Asignatura",
+        y="Nota",
+        color="Sexo",
+        color_discrete_sequence=["red", "blue"],
+    )
 
-#fig.update_traces(quartilemethod="exclusive") 
+    st.plotly_chart(fig)
 
-st.plotly_chart(fig)
-
+else:
+    st.info(
+        "Actualmente no hay datos ingresados, por favor cargue su archivo csv en la pestaña de Home",
+        icon="💡",
+    )
