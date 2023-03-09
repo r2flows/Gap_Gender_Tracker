@@ -37,7 +37,7 @@ if dataframe is not None:
         title="Evolución de puntajes por género",
         color="Sexo",
         labels={"Año", "Puntaje"},
-        color_discrete_sequence=px.colors.qualitative.G10,
+        color_discrete_sequence=["red", "blue"],
     )
     st.plotly_chart(figure_or_data=fig, use_container_width=True)
 else:
