@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+
 
 dataframe = st.session_state.get("data")
 
@@ -33,14 +32,14 @@ if dataframe is not None:
         id_vars=["Sexo", "Año"],
         value_vars=asignaturas,
         var_name="Asignatura",
-        value_name="Nota",
+        value_name="Puntaje",
     )
     filtro = data_long["Año"] == año
 
     fig = px.box(
         data_long[filtro],
         x="Asignatura",
-        y="Nota",
+        y="Puntaje",
         color="Sexo",
         color_discrete_sequence=["red", "blue"],
     )
